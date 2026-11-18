@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASHISH – THE INITIATIVE | AI Engineer & Future Technologist</title>
+  <meta name="description" content="Futuristic Avengers-inspired portfolio of Ashish Sharma - AI Engineer, Web Developer, and Programmer at Shoolini University. AI × CODE × FUTURE.">
+  <meta name="keywords" content="Ashish Sharma, AI Engineer, Portfolio, Avengers, Iron Man, Stark Industries, Shoolini University, Artificial Intelligence, Web Developer">
+  <meta name="author" content="Ashish Sharma">
+
+  <!-- Google Fonts: Orbitron (Futuristic Display) + Rajdhani (HUD & Headers) + Inter (Clean Tech Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 for High-Tech Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Primary Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading-active">
+
+  <!-- ========================================================
+       CUSTOM HUD CURSOR (DESKTOP)
+       ======================================================== -->
+  <div class="hud-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="hud-cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <div class="hud-cursor-reticle" id="cursorReticle" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       CINEMATIC PRELOADER / SYSTEM INITIALIZATION
+       ======================================================== -->
+  <div id="preloader" class="preloader-overlay" role="dialog" aria-modal="true" aria-label="System Initializing">
+    <div class="preloader-content">
+      <!-- Mini Arc Reactor in Loader -->
+      <div class="loader-arc-reactor">
+        <div class="reactor-outer-ring"></div>
+        <div class="reactor-segmented-ring"></div>
+        <div class="reactor-inner-ring"></div>
+        <div class="reactor-core-glow"></div>
+        <div class="reactor-tri-core"></div>
+      </div>
+
+      <div class="loader-status-container">
+        <div class="loader-brand">
+          <span class="hud-badge red-badge">STARK-TECH CLASSIFIED</span>
+          <h2 class="loader-title">INITIATIVE PROTOCOL</h2>
+          <p class="loader-sub">ASHISH SHARMA // SYSTEM ARCHITECT</p>
+        </div>
+
+        <div class="loader-progress-bar-wrap">
+          <div class="loader-progress-bar" id="loaderBar"></div>
+        </div>
+
+        <div class="loader-log" id="loaderLog">
+          <span class="log-line">> CONNECTING QUANTUM NEURAL INTERFACE...</span>
+        </div>
+
+        <button id="skipLoaderBtn" class="hud-btn hud-btn-outline skip-loader-btn" data-speak="Skipping initialization. Welcome to the Initiative.">
+          <span>ENGAGE SYSTEM &rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       AUDIO FEEDBACK & BACKGROUND HUD AMBIENCE
+       ======================================================== -->
+  <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       PERSISTENT HUD NAVIGATION BAR
+       ======================================================== -->
+  <header class="hud-header" id="hudHeader">
+    <div class="header-container">
+      <!-- Brand Logo / Emblem -->
+      <a href="#hero" class="brand-emblem" data-speak="Ashish, The Initiative. Returning to command deck." aria-label="Ashish Sharma Initiative Home">
+        <div class="mini-reactor-icon">
+          <div class="mini-core"></div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ASHISH</span>
+          <span class="brand-tag">THE INITIATIVE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Tactical Nav Links -->
+      <nav class="hud-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#hero" class="nav-link active" data-speak="Initiative command center.">
+              <span class="nav-num">01</span>
+              <span class="nav-label">COMMAND</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link" data-speak="Welcome to Ashish's Origin Story. Here you can learn about my background and education.">
+              <span class="nav-num">02</span>
+              <span class="nav-label">ORIGIN</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#skills" class="nav-link" data-speak="Welcome to my Tech Arsenal. Here are the technologies and programming skills I am learning.">
+              <span class="nav-num">03</span>
+              <span class="nav-label">ARSENAL</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link" data-speak="Welcome to my Missions. Explore my web development and machine learning projects.">
+              <span class="nav-num">04</span>
+              <span class="nav-label">MISSIONS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#education" class="nav-link" data-speak="Here is my educational journey at Shoolini University.">
+              <span class="nav-num">05</span>
+              <span class="nav-label">TIMELINE</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link" data-speak="Want to connect with me? You can contact me through email or my social profiles.">
+              <span class="nav-num">06</span>
+              <span class="nav-label">TRANSMISSION</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- HUD Assistant Status & Audio Controls -->
+      <div class="header-hud-controls">
+        <!-- Voice Assistant Widget -->
+        <div class="voice-assistant-badge" id="voiceStatusBadge" title="AI Voice Synthesizer Protocol">
+          <div class="sound-wave-bars" id="voiceWaveform" aria-hidden="true">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <span class="voice-status-text" id="voiceStatusText">F.R.I.D.A.Y. ONLINE</span>
+        </div>
+
+        <!-- Master Voice ON/OFF Toggle -->
+        <button id="voiceToggleBtn" class="hud-icon-btn active" title="Toggle Voice Synthesis On / Off" aria-label="Toggle Voice Synthesis" data-speak="Voice synthesizer toggled.">
+          <i class="fa-solid fa-volume-high" id="voiceToggleIcon"></i>
+        </button>
+
+        <!-- Pause / Resume Speech -->
+        <button id="voicePauseBtn" class="hud-icon-btn" title="Pause / Resume Current Speech" aria-label="Pause or Resume Voice" data-speak="Speech state toggled.">
+          <i class="fa-solid fa-pause" id="voicePauseIcon"></i>
+        </button>
+
+        <!-- Stop Speech Button -->
+        <button id="voiceStopBtn" class="hud-icon-btn red-glow-hover" title="Stop Speaking Immediately" aria-label="Stop Voice Immediately" data-speak="Speech cancelled.">
+          <i class="fa-solid fa-stop"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-toggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Tactical Navigation Overlay -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <div class="mobile-nav-header">
+          <span class="hud-badge gold-badge">TACTICAL SYSTEM</span>
+          <span class="drawer-title">MISSION OVERVIEW</span>
+        </div>
+        <ul class="mobile-nav-list">
+          <li><a href="#hero" class="mobile-nav-link" data-speak="Initiative command center."><i class="fa-solid fa-crosshairs"></i> COMMAND</a></li>
+          <li><a href="#about" class="mobile-nav-link" data-speak="Welcome to Ashish's Origin Story. Here you can learn about my background and education."><i class="fa-solid fa-user-astronaut"></i> ORIGIN STORY</a></li>
+          <li><a href="#skills" class="mobile-nav-link" data-speak="Welcome to my Tech Arsenal. Here are the technologies and programming skills I am learning."><i class="fa-solid fa-microchip"></i> TECH ARSENAL</a></li>
+          <li><a href="#projects" class="mobile-nav-link" data-speak="Welcome to my Missions. Explore my web development and machine learning projects."><i class="fa-solid fa-rocket"></i> MISSIONS</a></li>
+          <li><a href="#education" class="mobile-nav-link" data-speak="Here is my educational journey at Shoolini University."><i class="fa-solid fa-graduation-cap"></i> EDUCATION</a></li>
+          <li><a href="#contact" class="mobile-nav-link" data-speak="Want to connect with me? You can contact me through email or my social profiles."><i class="fa-solid fa-satellite-dish"></i> TRANSMISSION</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <p class="tagline-mini">AI &times; CODE &times; FUTURE</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ========================================================
+         SECTION 1: HERO SECTION - COMMAND DECK
+         ======================================================== -->
+    <section id="hero" class="hero-section" aria-label="Command Deck">
+      <div class="hero-backdrop-grid"></div>
+
+      <!-- Center Cinematic Arc Reactor Core -->
+      <div class="hero-reactor-centerpiece" aria-hidden="true">
+        <div class="arc-reactor-system">
+          <!-- Outer Segmented Ring with Stator Markings -->
+          <div class="arc-outer-ring">
+            <div class="stator-tooth t1"></div>
+            <div class="stator-tooth t2"></div>
+            <div class="stator-tooth t3"></div>
+            <div class="stator-tooth t4"></div>
+            <div class="stator-tooth t5"></div>
+            <div class="stator-tooth t6"></div>
+            <div class="stator-tooth t7"></div>
+            <div class="stator-tooth t8"></div>
+          </div>
+          <!-- Mid Counter-Rotating Circuit Ring -->
+          <div class="arc-mid-ring">
+            <div class="coil c1"></div>
+            <div class="coil c2"></div>
+            <div class="coil c3"></div>
+            <div class="coil c4"></div>
+          </div>
+          <!-- Inner Precision Ring -->
+          <div class="arc-inner-ring"></div>
+          <!-- High-Intensity Blue Palladium / Nanotech Core -->
+          <div class="arc-core-pulse"></div>
+          <!-- Triangular Energy Emitter -->
+          <div class="arc-triangle-emitter"></div>
+          <!-- Pulsing Radiation Waves -->
+          <div class="arc-energy-wave wave-1"></div>
+          <div class="arc-energy-wave wave-2"></div>
+        </div>
+      </div>
+
+      <div class="hero-container">
+        <!-- System Status Bar -->
+        <div class="hero-telemetry-badge">
+          <span class="telemetry-dot"></span>
+          <span class="telemetry-text" id="typewriterStatus">INITIALIZING SYSTEM... WELCOME TO MY DIGITAL UNIVERSE.</span>
+        </div>
+
+        <!-- Main Title & Supercharged Typography -->
+        <div class="hero-title-block">
+          <p class="hero-eyebrow">STARK-INSPIRED AI ENGINEER PORTFOLIO</p>
+          <h1 class="hero-main-title">
+            <span class="title-first">ASHISH</span>
+            <span class="title-divider">//</span>
+            <span class="title-last">THE INITIATIVE</span>
+          </h1>
+          <h2 class="hero-subtitle">
+            <span class="highlight-cyan">AI ENGINEER</span>
+            <span class="sep">&bull;</span>
+            <span class="highlight-gold">WEB DEVELOPER</span>
+            <span class="sep">&bull;</span>
+            <span class="highlight-red">FUTURE TECHNOLOGIST</span>
+          </h2>
+          <div class="hero-tagline-container">
+            <p class="hero-tagline">&ldquo;One Mind. Infinite Ideas.&rdquo;</p>
+            <div class="special-identity-pill">
+              <i class="fa-solid fa-atom"></i>
+              <span>AI &times; CODE &times; FUTURE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-actions">
+          <a href="#about" class="hud-btn hud-btn-primary" data-speak="Exploring universe. Navigating to Origin Story.">
+            <span class="btn-glow-layer"></span>
+            <span class="btn-text"><i class="fa-solid fa-compass"></i> EXPLORE MY UNIVERSE</span>
+            <span class="btn-corner tl"></span>
+            <span class="btn-corner br"></span>
+          </a>
+
+          <a href="#projects" class="hud-btn hud-btn-gold" data-speak="Viewing active missions and development projects.">
+            <span class="btn-glow-layer"></span>
+            <span class="btn-text"><i class="fa-solid fa-diagram-project"></i> VIEW MY PROJECTS</span>
+            <span class="btn-corner tl"></span>
+            <span class="btn-corner br"></span>
+          </a>
+
+          <!-- Download Resume Button (Triggers Modal / Direct Download) -->
+          <button id="downloadResumeBtn" class="hud-btn hud-btn-outline" data-speak="Opening Ashish Sharma's resume dossier. You can review or download it." aria-label="Download Resume Dossier">
+            <span class="btn-glow-layer"></span>
+            <span class="btn-text"><i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD RESUME</span>
+            <span class="btn-corner tl"></span>
+            <span class="btn-corner br"></span>
+          </button>
+        </div>
+
+        <!-- Real-time HUD Telemetry Grid -->
+        <div class="hero-metrics-grid">
+          <div class="metric-card" data-speak="Core status: Online. Spec: Second year Artificial Intelligence.">
+            <span class="metric-label">STATUS</span>
+            <span class="metric-val highlight-cyan">ACTIVE // LVL 2</span>
+            <span class="metric-sub">B.Tech CSE (AI)</span>
+          </div>
+          <div class="metric-card" data-speak="Current institutional node: Shoolini University, Third Semester.">
+            <span class="metric-label">INSTITUTION</span>
+            <span class="metric-val highlight-gold">SHOOLINI UNIV</span>
+            <span class="metric-sub">3rd Semester</span>
+          </div>
+          <div class="metric-card" data-speak="Quantum Arc Reactor operating at 100 percent nominal efficiency.">
+            <span class="metric-label">ARC POWER</span>
+            <span class="metric-val highlight-red">100% NOMINAL</span>
+            <span class="metric-sub">Zero Point Output</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="hero-scroll-cue" aria-label="Scroll to Origin Story" data-speak="Descending to Origin Story.">
+        <span class="scroll-label">SCROLL TO ENGAGE</span>
+        <div class="scroll-chevron-wrap">
+          <i class="fa-solid fa-angles-down"></i>
+        </div>
+      </a>
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: ABOUT ME – ORIGIN STORY
+         ======================================================== -->
+    <section id="about" class="content-section about-section" aria-label="Origin Story">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="header-pre-title">
+            <span class="hud-badge red-badge"><i class="fa-solid fa-shield-halved"></i> PROTOCOL 02</span>
+            <span class="classification-text">STARK-ID // CLASSIFIED ORIGIN</span>
+          </div>
+          <h2 class="section-title">ORIGIN STORY <span class="dim">//</span> ABOUT ME</h2>
+          <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+          <p class="section-lead">The genesis of an aspiring engineer building intelligence at the intersection of algorithms and the digital realm.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left Column: Holographic Profile Dossier -->
+          <div class="about-card-wrapper">
+            <div class="hologram-hud-card" data-speak="Ashish Sharma. B.Tech Computer Science Engineering in Artificial Intelligence at Shoolini University. Specializing in AI, Programming, and Web Development.">
+              <!-- Hologram Top Scanline -->
+              <div class="hologram-scanline"></div>
+              
+              <!-- Card Corner Brackets -->
+              <span class="hud-bracket b-tl"></span>
+              <span class="hud-bracket b-tr"></span>
+              <span class="hud-bracket b-bl"></span>
+              <span class="hud-bracket b-br"></span>
+
+              <div class="card-inner-header">
+                <div class="chip-graphic">
+                  <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <div class="card-id-meta">
+                  <span class="meta-tag">DOSSIER #AS-73170</span>
+                  <span class="meta-auth">CLEARANCE: LEVEL 5</span>
+                </div>
+              </div>
+
+              <!-- Animated Avatar / Reactor Emblem -->
+              <div class="profile-avatar-container">
+                <div class="avatar-holo-ring"></div>
+                <div class="avatar-portrait">
+                  <div class="avatar-iron-icon">
+                    <i class="fa-solid fa-robot"></i>
+                  </div>
+                  <div class="avatar-core-pulse"></div>
+                </div>
+                <div class="avatar-label-pill">ASHISH SHARMA</div>
+              </div>
+
+              <!-- Technical Specifications Table -->
+              <div class="specs-table">
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-regular fa-user"></i> Name:</span>
+                  <span class="spec-value">Ashish Sharma</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-solid fa-graduation-cap"></i> Education:</span>
+                  <span class="spec-value highlight-cyan">B.Tech CSE (AI)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-solid fa-building-columns"></i> University:</span>
+                  <span class="spec-value">Shoolini University</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-regular fa-calendar-check"></i> Year:</span>
+                  <span class="spec-value highlight-gold">2nd Year</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-solid fa-layer-group"></i> Semester:</span>
+                  <span class="spec-value highlight-gold">3rd Semester</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label"><i class="fa-solid fa-compass-drafting"></i> Interests:</span>
+                  <span class="spec-value highlight-red">AI, Programming, Web Dev</span>
+                </div>
+              </div>
+
+              <!-- Voice Prompt Hint -->
+              <div class="card-footer-hint">
+                <i class="fa-solid fa-volume-high"></i> Click card or specs to hear profile narration
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Narrative & Mission Statement -->
+          <div class="about-narrative-column">
+            <!-- Glassmorphism Narrative Card -->
+            <div class="hud-glass-panel narrative-panel">
+              <div class="panel-header">
+                <div class="panel-dots">
+                  <span class="dot red"></span>
+                  <span class="dot gold"></span>
+                  <span class="dot cyan"></span>
+                </div>
+                <span class="panel-title">SYSTEM ARCHIVE // PERSONAL_STATEMENT.LOG</span>
+              </div>
+              <div class="panel-body">
+                <div class="terminal-prompt">
+                  <span class="prompt-user">ashish@initiative</span>:<span class="prompt-dir">~/origin</span>$ cat bio.txt
+                </div>
+                <p class="narrative-text">
+                  Hello! I am <strong class="text-glow-cyan">Ashish Sharma</strong>, a second-year B.Tech Computer Science Engineering student specializing in <strong class="text-glow-gold">Artificial Intelligence</strong> at <strong class="text-glow-white">Shoolini University</strong>.
+                </p>
+                <p class="narrative-text">
+                  I am passionate about programming, artificial intelligence, web development, and modern technologies. Driven by curiosity and a relentless desire to innovate, I approach every challenge as an opportunity to build robust computational solutions.
+                </p>
+                <p class="narrative-text">
+                  I enjoy learning new technologies, solving programming problems, and developing creative projects that bridge mathematical intelligence with sleek, responsive digital interfaces.
+                </p>
+
+                <!-- Core Pillars / Superhero Trait Cards -->
+                <div class="traits-grid">
+                  <div class="trait-box" data-speak="Pillar one: Artificial Intelligence. Crafting predictive algorithms and intelligent data workflows.">
+                    <div class="trait-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="trait-content">
+                      <h4>AI &amp; INTELLIGENCE</h4>
+                      <p>Harnessing algorithms to interpret patterns and drive automation.</p>
+                    </div>
+                  </div>
+                  <div class="trait-box" data-speak="Pillar two: Clean Code Architecture. Writing modular, resilient programs in C++ and Python.">
+                    <div class="trait-icon"><i class="fa-solid fa-code"></i></div>
+                    <div class="trait-content">
+                      <h4>ROBUST CODE</h4>
+                      <p>Engineering maintainable structures with disciplined problem solving.</p>
+                    </div>
+                  </div>
+                  <div class="trait-box" data-speak="Pillar three: Modern Web Engineering. Building reactive, responsive, and cinematic digital products.">
+                    <div class="trait-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="trait-content">
+                      <h4>MODERN WEB</h4>
+                      <p>Sculpting immersive user interfaces powered by modern web standards.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: TECH ARSENAL – MY SKILLS
+         ======================================================== -->
+    <section id="skills" class="content-section skills-section" aria-label="Tech Arsenal">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="header-pre-title">
+            <span class="hud-badge cyan-badge"><i class="fa-solid fa-microchip"></i> PROTOCOL 03</span>
+            <span class="classification-text">STARK ARMORY // CAPABILITIES</span>
+          </div>
+          <h2 class="section-title">TECH ARSENAL <span class="dim">//</span> MY SKILLS</h2>
+          <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+          <p class="section-lead">The core technical stack powering my development workflows. Click any technology module to trigger tactical audio analysis.</p>
+        </div>
+
+        <!-- Arsenal Filter Buttons -->
+        <div class="arsenal-filter-bar" role="tablist" aria-label="Skill Categories">
+          <button class="filter-btn active" data-filter="all" data-speak="Showing all skills in the arsenal.">ALL ARSENAL</button>
+          <button class="filter-btn" data-filter="ai-data" data-speak="Filtering by Artificial Intelligence and Data.">AI &amp; DATA</button>
+          <button class="filter-btn" data-filter="languages" data-speak="Filtering by Core Programming Languages.">LANGUAGES</button>
+          <button class="filter-btn" data-filter="web-db" data-speak="Filtering by Web Development and Databases.">WEB &amp; DBMS</button>
+          <button class="filter-btn" data-filter="tools" data-speak="Filtering by Version Control and Engineering Tools.">TOOLS &amp; VCS</button>
+        </div>
+
+        <!-- Skills Grid (All user-specified skills: Python, C++, HTML, CSS, JavaScript, Git, GitHub, MySQL, DBMS, Artificial Intelligence, Machine Learning) -->
+        <div class="skills-grid" id="skillsGrid">
+
+          <!-- 1. Python -->
+          <div class="skill-card" data-category="languages ai-data" data-skill="Python" data-speak="Python. Versatile language used for artificial intelligence, machine learning, and automation scripts.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon python-color"><i class="fa-brands fa-python"></i></div>
+              <span class="skill-category-tag">LANGUAGE / AI</span>
+            </div>
+            <h3 class="skill-name">Python</h3>
+            <p class="skill-desc">Primary language for data manipulation, machine learning modeling, and rapid backend scripting.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-cyan">ACTIVE STUDY</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-cyan" style="--target-width: 85%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 2. C++ -->
+          <div class="skill-card" data-category="languages" data-skill="C++" data-speak="C++. High performance compiled language for data structures, algorithms, and system programming.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon cpp-color"><i class="fa-solid fa-code"></i></div>
+              <span class="skill-category-tag">SYSTEMS / DSA</span>
+            </div>
+            <h3 class="skill-name">C++</h3>
+            <p class="skill-desc">Foundational programming, object-oriented concepts, and computational problem solving with STL.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-gold">CORE FOCUS</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-gold" style="--target-width: 80%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 3. Artificial Intelligence -->
+          <div class="skill-card" data-category="ai-data" data-skill="Artificial Intelligence" data-speak="Artificial Intelligence. Academic specialization in intelligent agents, heuristics, and automated reasoning.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon ai-color"><i class="fa-solid fa-brain"></i></div>
+              <span class="skill-category-tag">SPECIALIZATION</span>
+            </div>
+            <h3 class="skill-name">Artificial Intelligence</h3>
+            <p class="skill-desc">Theoretical and applied foundations of computational intelligence, neural concepts, and search heuristics.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-cyan">DEGREE MAJOR</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-cyan" style="--target-width: 82%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 4. Machine Learning -->
+          <div class="skill-card" data-category="ai-data" data-skill="Machine Learning" data-speak="Machine Learning. Developing predictive models, supervised learning algorithms, and data pattern analysis.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon ml-color"><i class="fa-solid fa-chart-line"></i></div>
+              <span class="skill-category-tag">PREDICTIVE TECH</span>
+            </div>
+            <h3 class="skill-name">Machine Learning</h3>
+            <p class="skill-desc">Supervised classification, regression models, feature evaluation, and practical agricultural prediction systems.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-gold">ACADEMIC RESEARCH</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-gold" style="--target-width: 78%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 5. HTML -->
+          <div class="skill-card" data-category="web-db" data-skill="HTML" data-speak="HTML. Semantic markup standard for structuring accessible and modern web experiences.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon html-color"><i class="fa-brands fa-html5"></i></div>
+              <span class="skill-category-tag">WEB FRONTEND</span>
+            </div>
+            <h3 class="skill-name">HTML</h3>
+            <p class="skill-desc">Semantic HTML5 architecture, structural accessibility, responsive viewports, and clean document outlines.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-red">FOUNDATIONAL</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-red" style="--target-width: 90%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 6. CSS -->
+          <div class="skill-card" data-category="web-db" data-skill="CSS" data-speak="CSS. Modern stylesheet language for responsive layouts, animations, and futuristic visual styling.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon css-color"><i class="fa-brands fa-css3-alt"></i></div>
+              <span class="skill-category-tag">UI / STYLING</span>
+            </div>
+            <h3 class="skill-name">CSS</h3>
+            <p class="skill-desc">Advanced CSS3 animations, Flexbox, CSS Grid, Glassmorphism, custom responsive variables, and HUD theming.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-cyan">ADVANCED DESIGN</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-cyan" style="--target-width: 88%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 7. JavaScript -->
+          <div class="skill-card" data-category="languages web-db" data-skill="JavaScript" data-speak="JavaScript. Dynamic scripting language powering DOM manipulation, speech synthesis, and client interactivity.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon js-color"><i class="fa-brands fa-js"></i></div>
+              <span class="skill-category-tag">FRONTEND / LOGIC</span>
+            </div>
+            <h3 class="skill-name">JavaScript</h3>
+            <p class="skill-desc">Modern ES6+ syntax, asynchronous operations, event-driven architecture, Web APIs, and canvas graphics.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-gold">DYNAMIC ENGINE</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-gold" style="--target-width: 82%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 8. MySQL -->
+          <div class="skill-card" data-category="web-db" data-skill="MySQL" data-speak="MySQL. Relational database management system for structured queries, schemas, and relational integrity.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon mysql-color"><i class="fa-solid fa-database"></i></div>
+              <span class="skill-category-tag">RELATIONAL DB</span>
+            </div>
+            <h3 class="skill-name">MySQL</h3>
+            <p class="skill-desc">Database schema creation, relational joins, indexing, and persistent backend integration for university projects.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-red">DATABASE ENGINE</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-red" style="--target-width: 75%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 9. DBMS -->
+          <div class="skill-card" data-category="web-db" data-skill="DBMS" data-speak="Database Management Systems. Comprehensive principles of relational modeling, normalization, and ACID transactions.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon dbms-color"><i class="fa-solid fa-server"></i></div>
+              <span class="skill-category-tag">DATA ARCHITECTURE</span>
+            </div>
+            <h3 class="skill-name">DBMS</h3>
+            <p class="skill-desc">Core database theory, normalization forms, transaction management, concurrency controls, and CRUD design.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-cyan">ACADEMIC COURSE</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-cyan" style="--target-width: 78%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 10. Git -->
+          <div class="skill-card" data-category="tools" data-skill="Git" data-speak="Git. Distributed version control system for tracking source code changes and branching workflows.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon git-color"><i class="fa-brands fa-git-alt"></i></div>
+              <span class="skill-category-tag">VERSION CONTROL</span>
+            </div>
+            <h3 class="skill-name">Git</h3>
+            <p class="skill-desc">Local version control, commit conventions, branch management, merge conflict resolution, and diff inspection.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-gold">DAILY TOOLSET</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-gold" style="--target-width: 80%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+          <!-- 11. GitHub -->
+          <div class="skill-card" data-category="tools" data-skill="GitHub" data-speak="GitHub. Cloud repository platform for collaborating, hosting open source code, and repository management.">
+            <div class="skill-corner-accent"></div>
+            <div class="skill-card-top">
+              <div class="skill-icon github-color"><i class="fa-brands fa-github"></i></div>
+              <span class="skill-category-tag">CLOUD COLLABORATION</span>
+            </div>
+            <h3 class="skill-name">GitHub</h3>
+            <p class="skill-desc">Remote repositories, issue tracking, markdown documentation, collaborative pull requests, and web hosting.</p>
+            <div class="skill-progress-container">
+              <div class="progress-meta">
+                <span class="meta-label">PROFICIENCY STATUS</span>
+                <span class="meta-status highlight-cyan">COLLABORATION</span>
+              </div>
+              <div class="futuristic-progress-bar">
+                <div class="progress-fill fill-cyan" style="--target-width: 82%;"></div>
+                <div class="progress-glow"></div>
+              </div>
+            </div>
+            <div class="skill-indicator-badge">
+              <span class="pulsing-led"></span> CLICK TO AUDIT
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: MISSIONS – MY PROJECTS
+         ======================================================== -->
+    <section id="projects" class="content-section projects-section" aria-label="Missions">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="header-pre-title">
+            <span class="hud-badge gold-badge"><i class="fa-solid fa-crosshairs"></i> PROTOCOL 04</span>
+            <span class="classification-text">TACTICAL DEPLOYMENTS // MISSIONS</span>
+          </div>
+          <h2 class="section-title">MISSIONS <span class="dim">//</span> MY PROJECTS</h2>
+          <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+          <p class="section-lead">Explore hands-on software development initiatives across database management, machine learning, and frontend architecture.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- ================= PROJECT 1: CampusGear ================= -->
+          <div class="project-card" data-project-id="campusgear" data-speak="Mission 1: CampusGear. A university-related project focused on developing a web application with database connectivity and CRUD operations. Status: In Progress.">
+            <div class="project-hud-border"></div>
+            <div class="project-header-meta">
+              <span class="mission-code">MISSION #01 // DBMS &amp; WEB</span>
+              <span class="status-badge status-in-progress">
+                <span class="pulsing-dot"></span> IN PROGRESS
+              </span>
+            </div>
+
+            <!-- Original High-Tech Graphic / Blueprint Canvas Area -->
+            <div class="project-graphic-frame">
+              <div class="blueprint-grid"></div>
+              <div class="blueprint-schematic db-schematic">
+                <div class="schematic-center-node">
+                  <i class="fa-solid fa-server"></i>
+                  <span>CRUD ENGINE</span>
+                </div>
+                <div class="schematic-satellite s-left">
+                  <i class="fa-solid fa-database"></i>
+                  <span>MySQL DB</span>
+                </div>
+                <div class="schematic-satellite s-right">
+                  <i class="fa-brands fa-node-js"></i>
+                  <span>Node.js</span>
+                </div>
+                <div class="schematic-satellite s-bottom">
+                  <i class="fa-solid fa-desktop"></i>
+                  <span>UI Portal</span>
+                </div>
+              </div>
+              <div class="graphic-overlay-tag">STARK DB PROTOCOL</div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">CampusGear</h3>
+              <p class="project-category"><i class="fa-solid fa-layer-group"></i> DBMS and Web Development</p>
+              <p class="project-description">
+                A university-related project focused on developing a web application with database connectivity and CRUD operations. Designed to streamline campus equipment and asset allocation with persistent records.
+              </p>
+
+              <!-- Tech Badges -->
+              <div class="tech-badges-list">
+                <span class="tech-badge"><i class="fa-brands fa-html5"></i> HTML</span>
+                <span class="tech-badge"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                <span class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="tech-badge"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                <span class="tech-badge"><i class="fa-solid fa-database"></i> MySQL</span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="project-actions">
+                <button class="hud-btn hud-btn-primary view-project-btn" data-project="campusgear" data-speak="Opening full dossier for CampusGear.">
+                  <span class="btn-text"><i class="fa-solid fa-folder-open"></i> VIEW PROJECT</span>
+                </button>
+                <!-- GitHub link -->
+                <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-outline project-github-link" data-speak="Opening GitHub repository for CampusGear.">
+                  <span class="btn-text"><i class="fa-brands fa-github"></i> REPO</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PROJECT 2: Crop Recommendation System ================= -->
+          <div class="project-card" data-project-id="crop-recommendation" data-speak="Mission 2: Crop Recommendation System. An academic machine learning project focused on crop recommendation using input data.">
+            <div class="project-hud-border"></div>
+            <div class="project-header-meta">
+              <span class="mission-code">MISSION #02 // MACHINE LEARNING</span>
+              <span class="status-badge status-academic">
+                <span class="pulsing-dot green"></span> ACADEMIC ML
+              </span>
+            </div>
+
+            <!-- Original High-Tech Graphic / Blueprint Canvas Area -->
+            <div class="project-graphic-frame">
+              <div class="blueprint-grid"></div>
+              <div class="blueprint-schematic ml-schematic">
+                <div class="schematic-center-node ai-node">
+                  <i class="fa-solid fa-seedling"></i>
+                  <span>ML CLASSIFIER</span>
+                </div>
+                <div class="schematic-satellite s-left">
+                  <i class="fa-solid fa-vial"></i>
+                  <span>Soil N-P-K</span>
+                </div>
+                <div class="schematic-satellite s-right">
+                  <i class="fa-solid fa-cloud-sun-rain"></i>
+                  <span>Climate Data</span>
+                </div>
+                <div class="schematic-satellite s-bottom">
+                  <i class="fa-brands fa-python"></i>
+                  <span>Python Engine</span>
+                </div>
+              </div>
+              <div class="graphic-overlay-tag">PREDICTIVE AGRI-AI</div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Crop Recommendation System</h3>
+              <p class="project-category"><i class="fa-solid fa-brain"></i> Machine Learning</p>
+              <p class="project-description">
+                An academic machine learning project focused on crop recommendation using agricultural and environmental input data. Evaluates soil parameters, rainfall, and climate metrics to predict optimal crop yields.
+              </p>
+
+              <!-- Tech Badges -->
+              <div class="tech-badges-list">
+                <span class="tech-badge"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="tech-badge"><i class="fa-solid fa-chart-pie"></i> Machine Learning</span>
+                <span class="tech-badge"><i class="fa-solid fa-table"></i> Data Processing</span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="project-actions">
+                <button class="hud-btn hud-btn-gold view-project-btn" data-project="crop-recommendation" data-speak="Opening full dossier for Crop Recommendation System.">
+                  <span class="btn-text"><i class="fa-solid fa-folder-open"></i> VIEW PROJECT</span>
+                </button>
+                <!-- GitHub link -->
+                <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-outline project-github-link" data-speak="Opening GitHub repository for Crop Recommendation System.">
+                  <span class="btn-text"><i class="fa-brands fa-github"></i> REPO</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PROJECT 3: NeoVerse Portfolio ================= -->
+          <div class="project-card" data-project-id="neoverse" data-speak="Mission 3: NeoVerse Portfolio. A personal portfolio website showcasing programming skills, projects, and web development capabilities.">
+            <div class="project-hud-border"></div>
+            <div class="project-header-meta">
+              <span class="mission-code">MISSION #03 // FRONTEND DEV</span>
+              <span class="status-badge status-deployed">
+                <span class="pulsing-dot blue"></span> LIVE SHOWCASE
+              </span>
+            </div>
+
+            <!-- Original High-Tech Graphic / Blueprint Canvas Area -->
+            <div class="project-graphic-frame">
+              <div class="blueprint-grid"></div>
+              <div class="blueprint-schematic web-schematic">
+                <div class="schematic-center-node reactor-node">
+                  <i class="fa-solid fa-atom"></i>
+                  <span>INITIATIVE UI</span>
+                </div>
+                <div class="schematic-satellite s-left">
+                  <i class="fa-brands fa-html5"></i>
+                  <span>Semantic</span>
+                </div>
+                <div class="schematic-satellite s-right">
+                  <i class="fa-brands fa-css3-alt"></i>
+                  <span>Cinematic</span>
+                </div>
+                <div class="schematic-satellite s-bottom">
+                  <i class="fa-brands fa-js"></i>
+                  <span>Speech API</span>
+                </div>
+              </div>
+              <div class="graphic-overlay-tag">DIGITAL SHOWCASE</div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">NeoVerse Portfolio</h3>
+              <p class="project-category"><i class="fa-solid fa-desktop"></i> Frontend Web Development</p>
+              <p class="project-description">
+                A personal portfolio website showcasing programming skills, projects, and web development capabilities. Features immersive superhero HUD styling, native speech synthesis narration, and interactive canvas graphics.
+              </p>
+
+              <!-- Tech Badges -->
+              <div class="tech-badges-list">
+                <span class="tech-badge"><i class="fa-brands fa-html5"></i> HTML</span>
+                <span class="tech-badge"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                <span class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="tech-badge"><i class="fa-solid fa-volume-high"></i> Web Speech API</span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="project-actions">
+                <button class="hud-btn hud-btn-primary view-project-btn" data-project="neoverse" data-speak="Opening full dossier for NeoVerse Portfolio.">
+                  <span class="btn-text"><i class="fa-solid fa-folder-open"></i> VIEW PROJECT</span>
+                </button>
+                <!-- GitHub link -->
+                <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-outline project-github-link" data-speak="Opening GitHub repository for NeoVerse Portfolio.">
+                  <span class="btn-text"><i class="fa-brands fa-github"></i> REPO</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 5: EDUCATION SECTION – TIMELINE
+         ======================================================== -->
+    <section id="education" class="content-section education-section" aria-label="Education Timeline">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="header-pre-title">
+            <span class="hud-badge red-badge"><i class="fa-solid fa-graduation-cap"></i> PROTOCOL 05</span>
+            <span class="classification-text">ACADEMIC TRAJECTORY // TIMELINE</span>
+          </div>
+          <h2 class="section-title">EDUCATION <span class="dim">//</span> TIMELINE</h2>
+          <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+          <p class="section-lead">Tracing the academic milestones and algorithmic training grounding my engineering expertise.</p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-central-spine">
+            <div class="spine-energy-beam"></div>
+          </div>
+
+          <!-- Academic Milestone 1: Shoolini University B.Tech CSE (AI) -->
+          <div class="timeline-entry active-entry" data-speak="Shoolini University. Bachelor of Technology in Computer Science Engineering, specializing in Artificial Intelligence. Currently in second year, third semester.">
+            <div class="timeline-node">
+              <div class="node-arc-pulse"></div>
+              <div class="node-icon"><i class="fa-solid fa-building-columns"></i></div>
+            </div>
+
+            <div class="timeline-card hud-glass-panel">
+              <div class="timeline-card-header">
+                <div class="timeline-badge-group">
+                  <span class="hud-badge gold-badge">CURRENT ACADEMIC MILESTONE</span>
+                  <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2024 &ndash; PRESENT</span>
+                </div>
+                <h3 class="institution-name">Shoolini University</h3>
+                <h4 class="degree-title">B.Tech Computer Science Engineering (Artificial Intelligence)</h4>
+              </div>
+
+              <div class="timeline-body">
+                <div class="academic-telemetry">
+                  <div class="telemetry-item">
+                    <span class="t-label">CURRENT YEAR</span>
+                    <span class="t-value highlight-cyan">2nd Year</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="t-label">CURRENT SEMESTER</span>
+                    <span class="t-value highlight-gold">3rd Semester</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="t-label">SPECIALIZATION</span>
+                    <span class="t-value highlight-red">Artificial Intelligence</span>
+                  </div>
+                </div>
+
+                <div class="timeline-highlights">
+                  <p class="highlight-desc">
+                    Comprehensive study encompassing core engineering fundamentals: Data Structures, Object-Oriented Programming, Database Management Systems, Discrete Mathematics, and foundation models in Artificial Intelligence.
+                  </p>
+                  <ul class="coursework-tags">
+                    <li><i class="fa-solid fa-check"></i> Artificial Intelligence Foundations</li>
+                    <li><i class="fa-solid fa-check"></i> Relational DBMS &amp; Query Optimization</li>
+                    <li><i class="fa-solid fa-check"></i> Data Structures &amp; C++ Logic</li>
+                    <li><i class="fa-solid fa-check"></i> Full Stack Web Engineering</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-footer">
+                <span class="footer-meta"><i class="fa-solid fa-location-dot"></i> Himachal Pradesh, India</span>
+                <span class="footer-tag">STATUS: ENROLLED // IN PURSUIT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Futuristic Target Goal Node -->
+          <div class="timeline-entry future-entry" data-speak="Future objective: Advanced AI specialization and industry deployments in machine learning engineering.">
+            <div class="timeline-node future-node">
+              <div class="node-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+            </div>
+
+            <div class="timeline-card hud-glass-panel compact-future">
+              <div class="timeline-card-header">
+                <span class="hud-badge cyan-badge">STRATEGIC GOAL</span>
+                <h3 class="institution-name">Graduation &amp; AI Engineering Deployments</h3>
+              </div>
+              <p class="timeline-future-text">
+                Targeting enterprise-grade Artificial Intelligence and production software solutions, pioneering intelligent systems that shape real-world technology.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 6: CONTACT – CONNECT WITH ME
+         ======================================================== -->
+    <section id="contact" class="content-section contact-section" aria-label="Contact and Transmission">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="header-pre-title">
+            <span class="hud-badge red-badge"><i class="fa-solid fa-satellite-dish"></i> PROTOCOL 06</span>
+            <span class="classification-text">SECURE COMM CHANNEL // TRANSMISSION</span>
+          </div>
+          <h2 class="section-title">LET&rsquo;S BUILD THE FUTURE TOGETHER.</h2>
+          <div class="section-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+          <p class="section-lead">Direct communications link to Ashish Sharma. Initiate collaboration, academic inquiries, or technological missions.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Identity Transmission Dossier -->
+          <div class="contact-dossier-card hud-glass-panel">
+            <div class="dossier-header">
+              <div class="comm-indicator">
+                <span class="radar-sweep"></span>
+                <i class="fa-solid fa-tower-broadcast"></i>
+              </div>
+              <div>
+                <span class="hud-badge gold-badge">TRANSMITTER TERMINAL</span>
+                <h3 class="dossier-name">Ashish Sharma</h3>
+                <p class="dossier-role">AI Engineer &bull; Web Developer &bull; Programmer</p>
+              </div>
+            </div>
+
+            <div class="contact-items-list">
+              <!-- Email Connection -->
+              <a href="mailto:ashishsharma73170@gmail.com" class="contact-link-row" data-speak="Email transmission address: ashishsharma73170@gmail.com. Click to open your default mail client.">
+                <div class="link-icon email-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="link-details">
+                  <span class="detail-label">DIRECT EMAIL</span>
+                  <span class="detail-val">ashishsharma73170@gmail.com</span>
+                </div>
+                <div class="link-action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </a>
+
+              <!-- GitHub Profile Link -->
+              <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" class="contact-link-row" data-speak="GitHub transmission link. Connect on GitHub to review code repositories.">
+                <div class="link-icon github-icon"><i class="fa-brands fa-github"></i></div>
+                <div class="link-details">
+                  <span class="detail-label">GITHUB PROFILE</span>
+                  <span class="detail-val">github.com/ashishsharma73170-create</span>
+                </div>
+                <div class="link-action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </a>
+
+              <!-- LinkedIn Profile Link -->
+              <a href="https://www.linkedin.com/in/ashish-sharma-5110aa387" target="_blank" rel="noopener noreferrer" class="contact-link-row" data-speak="LinkedIn transmission link. Connect on LinkedIn for professional networking.">
+                <div class="link-icon linkedin-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div class="link-details">
+                  <span class="detail-label">LINKEDIN PROFILE</span>
+                  <span class="detail-val">linkedin.com/in/ashish-sharma-5110aa387</span>
+                </div>
+                <div class="link-action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </a>
+
+              <!-- University Node -->
+              <div class="contact-link-row static-row" data-speak="Institutional base: Shoolini University, Himachal Pradesh.">
+                <div class="link-icon uni-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="link-details">
+                  <span class="detail-label">BASE LOCATION</span>
+                  <span class="detail-val">Shoolini University, Solan, HP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="contact-buttons-row">
+              <a href="mailto:ashishsharma73170@gmail.com" class="hud-btn hud-btn-primary" data-speak="Initiating direct email dispatch to Ashish Sharma.">
+                <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> EMAIL ME</span>
+              </a>
+              <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-outline" data-speak="Opening GitHub profile.">
+                <span class="btn-text"><i class="fa-brands fa-github"></i> GITHUB</span>
+              </a>
+              <a href="https://www.linkedin.com/in/ashish-sharma-5110aa387" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-gold" data-speak="Opening LinkedIn profile.">
+                <span class="btn-text"><i class="fa-brands fa-linkedin-in"></i> LINKEDIN</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Transmission Terminal -->
+          <div class="transmission-form-container hud-glass-panel">
+            <div class="form-hud-header">
+              <div class="terminal-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="form-title">TRANSMIT ENCRYPTED PACKET</span>
+            </div>
+
+            <form id="contactForm" class="hud-form" action="mailto:ashishsharma73170@gmail.com" method="post" enctype="text/plain">
+              <div class="form-group">
+                <label for="senderName" class="hud-label"><i class="fa-regular fa-user"></i> AGENT IDENTIFIER (YOUR NAME)</label>
+                <input type="text" id="senderName" name="name" class="hud-input" placeholder="e.g. Tony Stark or Recruiter Name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="senderEmail" class="hud-label"><i class="fa-regular fa-envelope"></i> RETURN FREQUENCY (YOUR EMAIL)</label>
+                <input type="email" id="senderEmail" name="email" class="hud-input" placeholder="e.g. contact@domain.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="transmissionSubject" class="hud-label"><i class="fa-solid fa-terminal"></i> DIRECTIVE (SUBJECT)</label>
+                <input type="text" id="transmissionSubject" name="subject" class="hud-input" placeholder="e.g. AI Project Collaboration / Internship Opportunity" required>
+              </div>
+
+              <div class="form-group">
+                <label for="messageBody" class="hud-label"><i class="fa-regular fa-comment-dots"></i> TRANSMISSION CONTENT</label>
+                <textarea id="messageBody" name="message" class="hud-textarea" rows="4" placeholder="Draft your transmission for Ashish Sharma..." required></textarea>
+              </div>
+
+              <button type="submit" class="hud-btn hud-btn-primary full-width-btn" data-speak="Transmitting message to Ashish Sharma.">
+                <span class="btn-glow-layer"></span>
+                <span class="btn-text"><i class="fa-solid fa-satellite"></i> DISPATCH TRANSMISSION</span>
+                <span class="btn-corner tl"></span>
+                <span class="btn-corner br"></span>
+              </button>
+
+              <div id="formFeedback" class="form-feedback-hud" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER: INITIATIVE TELEMETRY DOCK
+       ======================================================== -->
+  <footer class="hud-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-reactor-mini"></div>
+        <div class="footer-brand-meta">
+          <span class="footer-name">ASHISH SHARMA</span>
+          <span class="footer-tagline">One Mind. Infinite Ideas.</span>
+        </div>
+      </div>
+
+      <div class="footer-special-identity">
+        <span class="identity-badge">AI &times; CODE &times; FUTURE</span>
+        <p class="university-cite">Shoolini University &bull; B.Tech CSE (Artificial Intelligence)</p>
+      </div>
+
+      <div class="footer-copyright">
+        <p>&copy; <span id="currentYear">2024</span> ASHISH &ndash; THE INITIATIVE. All Rights Reserved.</p>
+        <p class="classified-note">STARK TECH INSPIRED ARCHITECTURE &bull; BUILT FOR THE FUTURE</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       FLOATING INTERACTIVE HUD WIDGETS
+       ======================================================== -->
+
+  <!-- 1. Floating Voice Assistant Control Capsule -->
+  <aside class="floating-voice-capsule" id="floatingVoiceCapsule" aria-label="Voice Synthesizer HUD">
+    <div class="capsule-reactor-glow"></div>
+    <div class="capsule-status-cluster">
+      <div class="capsule-icon-wrap" id="capsuleVoiceTrigger" role="button" tabindex="0" title="Click to hear system status briefing" data-speak="Stark Initiative Voice Synthesizer active. F.R.I.D.A.Y. protocol listening. Click any element to hear full tactical narration.">
+        <i class="fa-solid fa-headset" id="assistantHeadsetIcon"></i>
+      </div>
+      <div class="capsule-info">
+        <span class="capsule-title">VOICE PROTOCOL</span>
+        <span class="capsule-state" id="capsuleStateText">STANDBY // READY</span>
+      </div>
+    </div>
+    <div class="capsule-quick-actions">
+      <button id="quickMuteBtn" class="capsule-btn" title="Mute / Unmute Voice" aria-label="Toggle Mute">
+        <i class="fa-solid fa-volume-high" id="quickMuteIcon"></i>
+      </button>
+      <button id="quickStopBtn" class="capsule-btn red-btn" title="Stop Speech" aria-label="Stop Speaking">
+        <i class="fa-solid fa-stop"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. Floating Back-to-Top Button -->
+  <button id="backToTopBtn" class="back-to-top-hud" title="Ascend to Command Deck" aria-label="Return to top of page" data-speak="Ascending to Command Deck.">
+    <i class="fa-solid fa-jet-fighter-up"></i>
+    <span class="btt-label">TOP</span>
+  </button>
+
+  <!-- ========================================================
+       MODAL: MISSION DOSSIER (PROJECT DETAILS)
+       ======================================================== -->
+  <div id="projectModal" class="hud-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle" aria-hidden="true">
+    <div class="hud-modal-card">
+      <button class="modal-close-btn" id="closeProjectModalBtn" aria-label="Close Dossier" data-speak="Closing mission dossier.">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-top-bar">
+        <span class="hud-badge gold-badge">CLASSIFIED MISSION DOSSIER</span>
+        <span class="modal-dossier-id" id="modalDossierId">DOSSIER #AS-01</span>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="modal-header-section">
+          <h2 class="modal-title" id="modalProjectTitle">Project Title</h2>
+          <div class="modal-meta-row">
+            <span class="modal-category" id="modalProjectCategory"><i class="fa-solid fa-tag"></i> Category</span>
+            <span class="modal-status-pill" id="modalProjectStatus">Status</span>
+          </div>
+        </div>
+
+        <div class="modal-blueprint-preview" id="modalBlueprint">
+          <!-- Dynamic high-tech preview graphic rendered by JS -->
+        </div>
+
+        <div class="modal-desc-block">
+          <h4 class="modal-section-heading"><i class="fa-solid fa-align-left"></i> MISSION SPECIFICATIONS</h4>
+          <p id="modalProjectDescription" class="modal-desc-text">Detailed description will load here...</p>
+        </div>
+
+        <div class="modal-tech-block">
+          <h4 class="modal-section-heading"><i class="fa-solid fa-microchip"></i> DEPLOYED TECHNOLOGY</h4>
+          <div id="modalProjectTechBadges" class="tech-badges-list"></div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <!-- Direct GitHub Link in Modal -->
+          <a href="https://github.com/ashishsharma73170-create" target="_blank" rel="noopener noreferrer" id="modalGithubLink" class="hud-btn hud-btn-outline" data-speak="Accessing repository source code.">
+            <span class="btn-text"><i class="fa-brands fa-github"></i> GITHUB REPOSITORY</span>
+          </a>
+          <button class="hud-btn hud-btn-primary" id="modalSpeakSummaryBtn" data-speak="Reciting mission dossier overview.">
+            <span class="btn-text"><i class="fa-solid fa-volume-high"></i> RE-READ DOSSIER</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL: RESUME DOSSIER & DOWNLOAD CONTROLS
+       ======================================================== -->
+  <div id="resumeModal" class="hud-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle" aria-hidden="true">
+    <div class="hud-modal-card resume-modal-card">
+      <button class="modal-close-btn" id="closeResumeModalBtn" aria-label="Close Resume Dossier" data-speak="Closing resume dossier.">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-top-bar">
+        <span class="hud-badge red-badge">PERSONNEL FILE // CREDENTIALS</span>
+        <span class="modal-dossier-id">CLEARANCE APPROVED</span>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="resume-sheet">
+          <div class="resume-sheet-header">
+            <div>
+              <h2 id="resumeModalTitle" class="resume-applicant-name">ASHISH SHARMA</h2>
+              <p class="resume-applicant-title">AI Engineer | Web Developer | Programmer</p>
+              <p class="resume-meta-contact">
+                <span><i class="fa-solid fa-envelope"></i> ashishsharma73170@gmail.com</span> &bull;
+                <span><i class="fa-solid fa-building-columns"></i> Shoolini University</span> &bull;
+                <span><i class="fa-solid fa-code"></i> AI &times; CODE &times; FUTURE</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="resume-sheet-section">
+            <h4 class="resume-h4"><i class="fa-solid fa-graduation-cap"></i> EDUCATION</h4>
+            <div class="resume-item">
+              <div class="resume-item-head">
+                <strong>B.Tech Computer Science Engineering (Artificial Intelligence)</strong>
+                <span class="resume-dates">2024 &ndash; Present</span>
+              </div>
+              <p class="resume-item-sub">Shoolini University &bull; 2nd Year (3rd Semester)</p>
+            </div>
+          </div>
+
+          <div class="resume-sheet-section">
+            <h4 class="resume-h4"><i class="fa-solid fa-microchip"></i> TECH ARSENAL</h4>
+            <p class="resume-skills-line">
+              <strong>Core Languages:</strong> Python, C++, JavaScript, HTML, CSS<br>
+              <strong>Data &amp; Systems:</strong> Artificial Intelligence, Machine Learning, DBMS, MySQL<br>
+              <strong>Tools &amp; VCS:</strong> Git, GitHub
+            </p>
+          </div>
+
+          <div class="resume-sheet-section">
+            <h4 class="resume-h4"><i class="fa-solid fa-diagram-project"></i> ACTIVE MISSIONS / PROJECTS</h4>
+            <div class="resume-item">
+              <strong>CampusGear:</strong> Web application with database connectivity and CRUD operations (HTML, CSS, JS, Node.js, MySQL) &ndash; <em>In Progress</em>.
+            </div>
+            <div class="resume-item">
+              <strong>Crop Recommendation System:</strong> Academic machine learning project predicting optimal crops using agricultural parameters (Python, ML).
+            </div>
+            <div class="resume-item">
+              <strong>NeoVerse Portfolio:</strong> Avengers-inspired futuristic portfolio with native Web Speech synthesis and interactive HUD (HTML, CSS, JS).
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-modal-actions">
+          <!-- ========================================================
+               EDITABLE RESUME FILE PATH:
+               Ashish can place his actual PDF file as 'Ashish_Sharma_Resume.pdf'
+               in this same directory, and the download attribute will fetch it!
+               ======================================================== -->
+          <a href="Ashish_Sharma_Resume.pdf" download="Ashish_Sharma_Resume.pdf" class="hud-btn hud-btn-gold" id="confirmResumeDownloadBtn" data-speak="Initiating download of Ashish Sharma's Resume PDF.">
+            <span class="btn-text"><i class="fa-solid fa-download"></i> DOWNLOAD PDF DOSSIER</span>
+          </a>
+
+          <button class="hud-btn hud-btn-outline" id="printResumeBtn" data-speak="Opening printer dialogue for Ashish Sharma's resume.">
+            <span class="btn-text"><i class="fa-solid fa-print"></i> PRINT DOSSIER</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accessibility Live Region for Speech Feedback -->
+  <div id="speechLiveAnnouncer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Primary JavaScript Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
